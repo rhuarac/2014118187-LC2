@@ -39,6 +39,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EntitiesDTO\ATMDTO.cs" />
+    <Compile Include="EntitiesDTO\BasedeDatosDTO.cs" />
+    <Compile Include="EntitiesDTO\CuentaDTO.cs" />
+    <Compile Include="EntitiesDTO\DispensadorEfectivoDTO.cs" />
+    <Compile Include="EntitiesDTO\PantallaDTO.cs" />
+    <Compile Include="EntitiesDTO\RanuraDepositoDTO.cs" />
+    <Compile Include="EntitiesDTO\RetiroDTO.cs" />
+    <Compile Include="EntitiesDTO\TecladoDTO.cs" />
     <Compile Include="Entities\ATM.cs" />
     <Compile Include="Entities\BasedeDatos.cs" />
     <Compile Include="Entities\Cuenta.cs" />
