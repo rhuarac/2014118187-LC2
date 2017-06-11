@@ -10,110 +10,189 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using _2014118187_ENT.Entities;
 using _2014118187_PER;
+using _2014118187_ENT.IRepositories;
+using AutoMapper;
+using _2014118187_ENT.EntitiesDTO;
 
 namespace _2014118187.API.Controllers
 {
     public class CuentaController : ApiController
     {
-        private _2014118187DbContext db = new _2014118187DbContext();
+        //private _2014118187DbContext db = new _2014118187DbContext();
+        private readonly IUnityOfWork _UnityOfWork;
+
+        public CuentaController()
+        {
+
+        }
+
+        public CuentaController(IUnityOfWork unityOfWork)
+        {
+            _UnityOfWork = unityOfWork;
+        }
 
         // GET: api/Cuenta
-        public IQueryable<Cuenta> GetCuenta()
-        {
-            return db.Cuenta;
-        }
+       // public IQueryable<Cuenta> GetCuenta()
+        //{
+          //  return db.Cuenta;
+        //}
 
         // GET: api/Cuenta/5
         [ResponseType(typeof(Cuenta))]
-        public IHttpActionResult GetCuenta(int id)
+        public IHttpActionResult Get()
         {
-            Cuenta cuenta = db.Cuenta.Find(id);
-            if (cuenta == null)
-            {
-                return NotFound();
-            }
+            var Cuentas = _UnityOfWork.Cuenta.GetAll();
 
-            return Ok(cuenta);
+            if (Cuentas == null)
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+
+            var CuentaDTO = new List<CuentaDTO>();
+
+            foreach (var cuenta in Cuentas)
+                CuentaDTO.Add(Mapper.Map<Cuenta, CuentaDTO>(cuenta));
+
+            return Ok(CuentaDTO);
         }
 
         // PUT: api/Cuenta/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PutCuenta(int id, Cuenta cuenta)
+        //[ResponseType(typeof(void))]
+        //public IHttpActionResult PutCuenta(int id, Cuenta cuenta)
+        //{
+        // if (!ModelState.IsValid)
+        //{
+        //  return BadRequest(ModelState);
+        //}
+
+        //if (id != cuenta.Pin)
+        //{
+        //  return BadRequest();
+        //}
+
+        //db.Entry(cuenta).State = EntityState.Modified;
+
+        //try
+        //{
+        // db.SaveChanges();
+        // }
+        //catch (DbUpdateConcurrencyException)
+        //{
+        ///  if (!CuentaExists(id))
+        //{
+        //  return NotFound();
+        // }
+        //else
+        //{
+        //  throw;
+        //   }
+        //}
+
+        //return StatusCode(HttpStatusCode.NoContent);
+        //}
+        public IHttpActionResult Get(int id)
+        {
+            var cuenta = _UnityOfWork.Cuenta.Get(id);
+
+            if (cuenta == null)
+                return NotFound();
+
+            return Ok(Mapper.Map<Cuenta, CuentaDTO>(cuenta));
+        }
+
+        [HttpPut]
+        public IHttpActionResult Update(int id, CuentaDTO cuentaDTO)
         {
             if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            if (id != cuenta.Pin)
-            {
                 return BadRequest();
-            }
 
-            db.Entry(cuenta).State = EntityState.Modified;
+            var cuentaInPersistence = _UnityOfWork.Cuenta.Get(id);
+            if (cuentaInPersistence == null)
+                return NotFound();
 
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!CuentaExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            Mapper.Map<CuentaDTO, Cuenta>(cuentaDTO, cuentaInPersistence);
 
-            return StatusCode(HttpStatusCode.NoContent);
+            _UnityOfWork.SaveChanges();
+
+            return Ok(cuentaDTO);
         }
-
         // POST: api/Cuenta
-        [ResponseType(typeof(Cuenta))]
-        public IHttpActionResult PostCuenta(Cuenta cuenta)
+        //[ResponseType(typeof(Cuenta))]
+        //public IHttpActionResult PostCuenta(Cuenta cuenta)
+        //{
+        //  if (!ModelState.IsValid)
+        //{
+        //  return BadRequest(ModelState);
+        ///}
+
+        //db.Cuenta.Add(cuenta);
+        //db.SaveChanges();
+
+        //return CreatedAtRoute("DefaultApi", new { id = cuenta.Pin }, cuenta);
+        //}
+        public IHttpActionResult Create(CuentaDTO cuentaDTO)
         {
             if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+                return BadRequest();
 
-            db.Cuenta.Add(cuenta);
-            db.SaveChanges();
+            var cuenta = Mapper.Map<CuentaDTO, Cuenta>(cuentaDTO);
 
-            return CreatedAtRoute("DefaultApi", new { id = cuenta.Pin }, cuenta);
+            _UnityOfWork.Cuenta.Add(cuenta);
+            _UnityOfWork.SaveChanges();
+
+            cuentaDTO.CuentaId = cuenta.CuentaId;
+
+            return Created(new Uri(Request.RequestUri + "/" + cuenta.CuentaId), cuentaDTO);
         }
+
+
 
         // DELETE: api/Cuenta/5
-        [ResponseType(typeof(Cuenta))]
-        public IHttpActionResult DeleteCuenta(int id)
+        //[ResponseType(typeof(Cuenta))]
+        //public IHttpActionResult DeleteCuenta(int id)
+        //{
+        //  Cuenta cuenta = db.Cuenta.Find(id);
+        //if (cuenta == null)
+        //{
+        //  return NotFound();
+        //}
+
+        //db.Cuenta.Remove(cuenta);
+        //db.SaveChanges();
+
+        //return Ok(cuenta);
+        //}
+
+        [HttpDelete]
+        public IHttpActionResult Delete(int id)
         {
-            Cuenta cuenta = db.Cuenta.Find(id);
-            if (cuenta == null)
-            {
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            var cuentaInDataBase = _UnityOfWork.Cuenta.Get(id);
+            if (cuentaInDataBase == null)
                 return NotFound();
-            }
 
-            db.Cuenta.Remove(cuenta);
-            db.SaveChanges();
+            _UnityOfWork.Cuenta.Delete(cuentaInDataBase);
+            _UnityOfWork.SaveChanges();
 
-            return Ok(cuenta);
+            return Ok();
         }
 
+        //protected override void Dispose(bool disposing)
+        // {
+        //  if (disposing)
+        //{
+        //  db.Dispose();
+        //}
+        //base.Dispose(disposing);
+        //}
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                _UnityOfWork.Dispose();
             }
             base.Dispose(disposing);
         }
-
-        private bool CuentaExists(int id)
-        {
-            return db.Cuenta.Count(e => e.Pin == id) > 0;
-        }
+        
     }
 }

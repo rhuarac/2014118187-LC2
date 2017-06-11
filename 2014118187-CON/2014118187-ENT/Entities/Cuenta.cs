@@ -10,6 +10,7 @@ namespace _2014118187_ENT.Entities
     {
         public int NumeroCuenta { get; set; }
         public int Pin { get; set; }
+        public int CuentaId { get; set; }
 
 
 
