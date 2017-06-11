@@ -7,12 +7,12 @@ namespace _2014118187.API.App_Start
     using System.Web;
 
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-    using _2014118187_ENT.IRepositories;
-    using _2014118187_PER.Repositories;
-    using _2014118187_PER;
 
     using Ninject;
     using Ninject.Web.Common;
+    using _2014118187_ENT.IRepositories;
+    using _2014118187_PER.Repositories;
+    using _2014118187_PER;
 
     public static class NinjectWebCommon 
     {

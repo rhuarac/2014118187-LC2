@@ -26,3 +26,5 @@ C:\Users\Rodrigo\Documents\Visual Studio 2017\Projects\2014118187-LC2\2014118187
 C:\Users\Rodrigo\Documents\Visual Studio 2017\Projects\2014118187-LC2\2014118187-CON\2014118187-PER\obj\Debug\2014118187-PER.csproj.GenerateResource.Cache
 C:\Users\Rodrigo\Documents\Visual Studio 2017\Projects\2014118187-LC2\2014118187-CON\2014118187-PER\obj\Debug\2014118187-PER.dll
 C:\Users\Rodrigo\Documents\Visual Studio 2017\Projects\2014118187-LC2\2014118187-CON\2014118187-PER\obj\Debug\2014118187-PER.pdb
+C:\Users\Rodrigo\Documents\Visual Studio 2017\Projects\2014118187-LC2\2014118187-CON\2014118187-PER\bin\Debug\es\EntityFramework.resources.dll
+C:\Users\Rodrigo\Documents\Visual Studio 2017\Projects\2014118187-LC2\2014118187-CON\2014118187-PER\bin\Debug\es\EntityFramework.SqlServer.resources.dll

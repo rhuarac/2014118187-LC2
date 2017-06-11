@@ -7,6 +7,5 @@ C:\Users\Rodrigo\Documents\Visual Studio 2013\Projects\2014118187\2014118187-CON
 C:\Users\Rodrigo\Documents\Visual Studio 2017\Projects\2014118187-LC2\2014118187-CON\2014118187-CON\bin\Debug\2014118187-CON.exe.config
 C:\Users\Rodrigo\Documents\Visual Studio 2017\Projects\2014118187-LC2\2014118187-CON\2014118187-CON\bin\Debug\2014118187-CON.exe
 C:\Users\Rodrigo\Documents\Visual Studio 2017\Projects\2014118187-LC2\2014118187-CON\2014118187-CON\bin\Debug\2014118187-CON.pdb
-C:\Users\Rodrigo\Documents\Visual Studio 2017\Projects\2014118187-LC2\2014118187-CON\2014118187-CON\obj\Debug\2014118187-CON.csprojResolveAssemblyReference.cache
 C:\Users\Rodrigo\Documents\Visual Studio 2017\Projects\2014118187-LC2\2014118187-CON\2014118187-CON\obj\Debug\2014118187-CON.exe
 C:\Users\Rodrigo\Documents\Visual Studio 2017\Projects\2014118187-LC2\2014118187-CON\2014118187-CON\obj\Debug\2014118187-CON.pdb
