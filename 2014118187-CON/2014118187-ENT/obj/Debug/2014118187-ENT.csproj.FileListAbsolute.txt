@@ -6,3 +6,4 @@ C:\Users\Rodrigo\Documents\Visual Studio 2017\Projects\2014118187-LC2\2014118187
 C:\Users\Rodrigo\Documents\Visual Studio 2017\Projects\2014118187-LC2\2014118187-CON\2014118187-ENT\bin\Debug\2014118187-ENT.pdb
 C:\Users\Rodrigo\Documents\Visual Studio 2017\Projects\2014118187-LC2\2014118187-CON\2014118187-ENT\obj\Debug\2014118187-ENT.dll
 C:\Users\Rodrigo\Documents\Visual Studio 2017\Projects\2014118187-LC2\2014118187-CON\2014118187-ENT\obj\Debug\2014118187-ENT.pdb
+C:\Users\Rodrigo\Documents\Visual Studio 2017\Projects\2014118187-LC2\2014118187-CON\2014118187-ENT\obj\Debug\2014118187-ENT.csprojResolveAssemblyReference.cache
